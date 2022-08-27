@@ -13,7 +13,7 @@ class ListPatientByIdController {
 
       return response.status(201).json(patient);
     } catch (error) {
-      throw new AppError("Patient does not exist!", 404);
+      throw new AppError("Patient doesn't exist!", 404);
     }
   }
 }

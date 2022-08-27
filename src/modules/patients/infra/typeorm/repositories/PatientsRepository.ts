@@ -1,4 +1,4 @@
-import { ICreatePatientDTO } from "@modules/patients/dto/ICreatePatientDTO";
+import { IPatientDTO } from "@modules/patients/dto/IPatientDTO";
 import { IPatientsRepository } from "@modules/patients/repositories/IPatientsRepository";
 import { getRepository, Repository } from "typeorm";
 import { Patient } from "../entities/Patient";
@@ -18,7 +18,7 @@ class PatientsRepository implements IPatientsRepository {
     gender,
     height,
     weight,
-  }: ICreatePatientDTO): Promise<Patient> {
+  }: IPatientDTO): Promise<Patient> {
     const patient = this.repository.create({
       name,
       phone_number,
@@ -49,7 +49,7 @@ class PatientsRepository implements IPatientsRepository {
     height,
     weight,
     id,
-  }: ICreatePatientDTO): Promise<void> {
+  }: IPatientDTO): Promise<void> {
     await this.repository
       .createQueryBuilder()
       .update({
@@ -64,11 +64,10 @@ class PatientsRepository implements IPatientsRepository {
       .where({
         id: id,
       })
-      .returning("*")
       .execute();
   }
 
-  async findByAll(): Promise<Patient[]> {
+  async findAll(): Promise<Patient[]> {
     const patient = await this.repository.find({
       order: {
         name: "ASC",

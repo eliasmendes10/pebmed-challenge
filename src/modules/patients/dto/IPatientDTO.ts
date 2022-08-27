@@ -1,4 +1,4 @@
-interface ICreatePatientDTO {
+interface IPatientDTO {
   name: string;
   phone_number: string;
   email: string;
@@ -9,4 +9,4 @@ interface ICreatePatientDTO {
   id?: string;
 }
 
-export { ICreatePatientDTO };
+export { IPatientDTO };
