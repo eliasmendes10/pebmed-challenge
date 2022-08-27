@@ -1,0 +1,62 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Pebmed Documentation",
+    "description": "This is an API Pebmed",
+    "version": "1.0.0",
+    "contact": {
+      "email": "eliasmdes@gmail.com"
+    }
+  },
+  "paths": {
+    "/patient": {
+      "post": {
+        "tags": ["Patient"],
+        "summary": "Create a patient",
+        "description": "Create a new patient",
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {},
+                "example": {
+                  "name": "patient name sample",
+                  "description": "patient description sample"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Patient already exists"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Patient": {
+      "type": "object",
+      "properties": {}
+    },
+    "Schedule": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}
