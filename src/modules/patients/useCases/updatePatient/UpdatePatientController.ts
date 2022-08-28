@@ -25,7 +25,7 @@ class UpdatePatientController {
 
       return response.status(204).send();
     } catch (error) {
-      throw new AppError("Patient doesn't exist!", 404);
+      throw new AppError(error, 400);
     }
   }
 }

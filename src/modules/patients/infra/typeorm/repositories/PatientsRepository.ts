@@ -2,6 +2,8 @@ import { IPatientDTO } from "@modules/patients/dto/IPatientDTO";
 import { IPatientsRepository } from "@modules/patients/repositories/IPatientsRepository";
 import { getRepository, Repository } from "typeorm";
 import { Patient } from "../entities/Patient";
+import { validate } from "class-validator";
+import { AppError } from "@shared/errors/AppError";
 
 class PatientsRepository implements IPatientsRepository {
   private repository: Repository<Patient>;
@@ -10,28 +12,17 @@ class PatientsRepository implements IPatientsRepository {
     this.repository = getRepository(Patient);
   }
 
-  async create({
-    name,
-    phone_number,
-    email,
-    birth_date,
-    gender,
-    height,
-    weight,
-  }: IPatientDTO): Promise<Patient> {
-    const patient = this.repository.create({
-      name,
-      phone_number,
-      email,
-      birth_date,
-      gender,
-      height,
-      weight,
-    });
-    console.log(patient);
+  async create(patient: IPatientDTO): Promise<Patient> {
+    const errors = await validate(
+      Object.setPrototypeOf(patient, new IPatientDTO())
+    );
 
-    await this.repository.save(patient);
-    return patient;
+    if (errors.length > 0) {
+      throw new AppError(errors, 400);
+    }
+    const create = this.repository.create(patient);
+
+    return create;
   }
 
   async findById(id: string): Promise<Patient> {
@@ -40,31 +31,16 @@ class PatientsRepository implements IPatientsRepository {
     return patient;
   }
 
-  async update({
-    name,
-    phone_number,
-    email,
-    birth_date,
-    gender,
-    height,
-    weight,
-    id,
-  }: IPatientDTO): Promise<void> {
-    await this.repository
-      .createQueryBuilder()
-      .update({
-        name,
-        phone_number,
-        email,
-        birth_date,
-        gender,
-        height,
-        weight,
-      })
-      .where({
-        id: id,
-      })
-      .execute();
+  async update(patient: IPatientDTO): Promise<void> {
+    const errors = await validate(
+      Object.setPrototypeOf(patient, new IPatientDTO())
+    );
+
+    if (errors.length > 0) {
+      throw new AppError(errors, 400);
+    }
+
+    await this.repository.update(patient.id, patient);
   }
 
   async findAll(): Promise<Patient[]> {
