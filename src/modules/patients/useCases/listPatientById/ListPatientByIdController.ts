@@ -11,7 +11,7 @@ class ListPatientByIdController {
     try {
       const patient = await listPatientByIdUseCase.execute(id);
 
-      return response.status(201).json(patient);
+      return response.status(200).json(patient);
     } catch (error) {
       throw new AppError("Patient doesn't exist!", 404);
     }

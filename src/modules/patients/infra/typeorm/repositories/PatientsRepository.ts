@@ -28,9 +28,7 @@ class PatientsRepository implements IPatientsRepository {
   }
 
   async findById(id: string): Promise<Patient> {
-    const patient = await this.repository.findOne(id);
-
-    return patient;
+    return await this.repository.findOne(id);
   }
 
   async update(patient: IPatientDTO): Promise<void> {

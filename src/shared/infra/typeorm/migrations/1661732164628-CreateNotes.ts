@@ -1,13 +1,13 @@
 import { MigrationInterface, QueryRunner, Table } from "typeorm";
 
-export class CreateSchedule1661558049449 implements MigrationInterface {
+export class CreateNotes1661732164628 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: "schedules",
+        name: "notes",
         columns: [
           { name: "id", type: "uuid", isPrimary: true },
-          { name: "time", type: "timestamp" },
+          { name: "note", type: "text" },
           { name: "created_at", type: "timestamp", default: "now()" },
           { name: "updated_at", type: "timestamp", default: "now()" },
           { name: "patient_id", type: "uuid", isNullable: true },
@@ -15,7 +15,7 @@ export class CreateSchedule1661558049449 implements MigrationInterface {
 
         foreignKeys: [
           {
-            name: "FKSchedulePatient",
+            name: "FKNotesPatient",
             referencedTableName: "patients",
             referencedColumnNames: ["id"],
             columnNames: ["patient_id"],
@@ -28,6 +28,6 @@ export class CreateSchedule1661558049449 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable("schedules");
+    await queryRunner.dropTable("notes");
   }
 }
