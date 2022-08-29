@@ -11,7 +11,7 @@ import { v4 as uuidV4 } from "uuid";
 
 import { Patient } from "@modules/patients/infra/typeorm/entities/Patient";
 
-@Entity("schedule")
+@Entity("schedules")
 class Schedule {
   @PrimaryColumn()
   id: string;

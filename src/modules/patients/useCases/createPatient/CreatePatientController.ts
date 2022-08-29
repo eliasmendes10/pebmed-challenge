@@ -2,7 +2,6 @@ import { AppError } from "@shared/errors/AppError";
 import { Request, Response } from "express";
 import { container } from "tsyringe";
 import { CreatePatientUseCase } from "./CreatePatientUseCase";
-import { validate } from "class-validator";
 
 class CreatePatientController {
   async handle(request: Request, response: Response): Promise<Response> {

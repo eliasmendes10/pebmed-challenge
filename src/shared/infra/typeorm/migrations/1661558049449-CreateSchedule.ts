@@ -15,7 +15,6 @@ export class CreateSchedule1661558049449 implements MigrationInterface {
           { name: "time", type: "timestamp" },
           { name: "created_at", type: "timestamp", default: "now()" },
           { name: "updated_at", type: "timestamp", default: "now()" },
-          { name: "note", type: "text" },
           { name: "patient_id", type: "uuid", isNullable: true },
         ],
 

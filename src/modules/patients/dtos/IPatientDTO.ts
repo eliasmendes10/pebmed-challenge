@@ -6,6 +6,7 @@ class IPatientDTO {
   @IsNotEmpty()
   phone_number: string;
   @IsEmail()
+  @IsNotEmpty()
   email: string;
   @IsNotEmpty()
   birth_date: string;

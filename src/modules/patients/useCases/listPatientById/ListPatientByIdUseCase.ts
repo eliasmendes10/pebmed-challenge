@@ -11,9 +11,7 @@ class ListPatientByIdUseCase {
   ) {}
 
   public async execute(id: string): Promise<Patient> {
-    const patientById = await this.patientsRepository.findById(id);
-
-    return patientById;
+    return await this.patientsRepository.findById(id);
   }
 }
 

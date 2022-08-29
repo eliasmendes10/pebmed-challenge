@@ -1,5 +1,4 @@
-import { IPatientDTO } from "@modules/patients/dto/IPatientDTO";
-import { Patient } from "@modules/patients/infra/typeorm/entities/Patient";
+import { IPatientDTO } from "@modules/patients/dtos/IPatientDTO";
 import { IPatientsRepository } from "@modules/patients/repositories/IPatientsRepository";
 import { AppError } from "@shared/errors/AppError";
 import { inject, injectable } from "tsyringe";

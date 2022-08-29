@@ -1,4 +1,4 @@
-import { IPatientDTO } from "@modules/patients/dto/IPatientDTO";
+import { IPatientDTO } from "@modules/patients/dtos/IPatientDTO";
 import { IPatientsRepository } from "@modules/patients/repositories/IPatientsRepository";
 import { getRepository, Repository } from "typeorm";
 import { Patient } from "../entities/Patient";
@@ -18,11 +18,13 @@ class PatientsRepository implements IPatientsRepository {
     );
 
     if (errors.length > 0) {
-      throw new AppError(errors, 400);
+      throw new AppError(errors);
     }
-    const create = this.repository.create(patient);
 
-    return create;
+    const result = this.repository.create(patient);
+
+    await this.repository.save(result);
+    return result;
   }
 
   async findById(id: string): Promise<Patient> {
@@ -37,7 +39,7 @@ class PatientsRepository implements IPatientsRepository {
     );
 
     if (errors.length > 0) {
-      throw new AppError(errors, 400);
+      throw new AppError(errors);
     }
 
     await this.repository.update(patient.id, patient);

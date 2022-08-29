@@ -1,4 +1,4 @@
-import { IPatientDTO } from "../dto/IPatientDTO";
+import { IPatientDTO } from "../dtos/IPatientDTO";
 import { Patient } from "../infra/typeorm/entities/Patient";
 
 interface IPatientsRepository {
