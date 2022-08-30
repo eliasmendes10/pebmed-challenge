@@ -1,8 +1,9 @@
-import { IsNotEmpty } from "class-validator";
+import { IsNotEmpty, IsDateString } from "class-validator";
 
 class IScheduleDTO {
   @IsNotEmpty()
-  time: string;
+  @IsDateString()
+  time: Date;
   @IsNotEmpty()
   patient_id: string;
   id?: string;

@@ -6,6 +6,7 @@ interface IPatientsRepository {
   findById(id: string): Promise<Patient>;
   update(data: IPatientDTO): Promise<void>;
   findAll(): Promise<Patient[]>;
+  delete(id: string): Promise<void>;
 }
 
 export { IPatientsRepository };
