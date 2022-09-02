@@ -11,11 +11,15 @@ class UpdateScheduleController {
 
     const updatePatientUseCase = container.resolve(UpdateScheduleUseCase);
     try {
-      await updatePatientUseCase.execute({ time, patient_id, id });
+      const schedule = await updatePatientUseCase.execute({
+        time,
+        patient_id,
+        id,
+      });
 
-      return response.status(204).send();
-    } catch (error) {
-      throw new AppError(error, 400);
+      return response.status(204).send(schedule);
+    } catch (e) {
+      return response.status(e.statusCode).json(e.message);
     }
   }
 }

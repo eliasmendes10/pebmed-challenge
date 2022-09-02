@@ -58,7 +58,7 @@ class SchedulesRepository implements ISchedulesRepository {
     return schedule;
   }
 
-  async getByTime(time: Date): Promise<Schedule> {
+  async getByTime(time: string): Promise<Schedule> {
     return await this.repository.findOne({ time });
   }
 }

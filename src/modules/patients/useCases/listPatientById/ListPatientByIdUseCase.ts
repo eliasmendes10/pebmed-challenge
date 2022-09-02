@@ -15,7 +15,7 @@ class ListPatientByIdUseCase {
     const patient = await this.patientsRepository.findById(id);
 
     if (!patient) {
-      throw new AppError("Patient doesn't exists", 404);
+      throw new AppError({ error: "Patient doesn't exists" }, 400);
     }
     return patient;
   }

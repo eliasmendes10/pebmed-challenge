@@ -7,7 +7,7 @@ interface ISchedulesRepository {
   delete(id: string): Promise<void>;
   findById(id: string): Promise<Schedule>;
   findAll(): Promise<Schedule[]>;
-  getByTime(time: Date): Promise<Schedule>;
+  getByTime(time: string): Promise<Schedule>;
 }
 
 export { ISchedulesRepository };

@@ -19,7 +19,7 @@ describe("Update Patient", () => {
     );
   });
 
-  it("Should be able to update a doesn't exists patient", async () => {
+  it("Should be able to update a non-existent patient", async () => {
     const id = "eb63b0ae-00fc-41ac-bc02-aff1ed141d6b";
 
     expect(async () => {

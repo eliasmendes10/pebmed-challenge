@@ -2,7 +2,6 @@ import { AppError } from "@shared/errors/AppError";
 import { Request, Response } from "express";
 import { container } from "tsyringe";
 import { CreateScheduleUseCase } from "./CreateScheduleUseCase";
-import { validate } from "class-validator";
 
 class CreateScheduleController {
   async handle(request: Request, response: Response): Promise<Response> {
@@ -16,8 +15,8 @@ class CreateScheduleController {
       });
 
       return response.status(201).json(schedule);
-    } catch (error) {
-      throw new AppError(error, 400);
+    } catch (e) {
+      return response.status(e.statusCode).json(e.message);
     }
   }
 }

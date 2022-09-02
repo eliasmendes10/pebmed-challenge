@@ -16,7 +16,7 @@ describe("List Patient", () => {
   });
 
   it("Should be able to list all patient", async () => {
-    const patient = await createPatientUseCase.execute({
+    await createPatientUseCase.execute({
       name: "Elias Mendes",
       phone_number: "48996412660",
       email: "eliasmdes@gmail.com",
@@ -26,7 +26,7 @@ describe("List Patient", () => {
       weight: 85,
     });
 
-    const patient2 = await createPatientUseCase.execute({
+    await createPatientUseCase.execute({
       name: "Elias Mendes",
       phone_number: "48996412660",
       email: "eliasmdes2@gmail.com",
@@ -36,7 +36,7 @@ describe("List Patient", () => {
       weight: 85,
     });
 
-    const patient3 = await createPatientUseCase.execute({
+    await createPatientUseCase.execute({
       name: "Elias Mendes",
       phone_number: "48996412660",
       email: "eliasmdes3@gmail.com",

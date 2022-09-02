@@ -16,8 +16,8 @@ class Schedule {
   @PrimaryColumn()
   id: string;
 
-  @Column()
-  time: Date;
+  @Column({ type: "date" })
+  time: string;
 
   @Column()
   patient_id: string;

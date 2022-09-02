@@ -47,7 +47,7 @@ class CreatePatientUseCase {
     const patientExists = await this.patientsRepository.findByEmail(email);
 
     if (patientExists) {
-      throw new AppError("Patient already exists", 400);
+      throw new AppError({ error: "Patient already exists" }, 400);
     }
 
     const patient = await this.patientsRepository.create({
