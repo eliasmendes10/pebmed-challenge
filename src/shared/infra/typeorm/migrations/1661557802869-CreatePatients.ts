@@ -11,7 +11,12 @@ export class CreatePatients1661557802869 implements MigrationInterface {
           { name: "phone_number", type: "varchar" },
           { name: "email", type: "varchar" },
           { name: "birth_date", type: "date" },
-          { name: "gender", type: "varchar" },
+          {
+            name: "gender",
+            type: "enum",
+            enum: ["Masculino", "Feminino", "Prefiro não informar"],
+            isNullable: true,
+          },
           { name: "height", type: "varchar" },
           { name: "weight", type: "varchar" },
           { name: "created_at", type: "timestamp", default: "now()" },

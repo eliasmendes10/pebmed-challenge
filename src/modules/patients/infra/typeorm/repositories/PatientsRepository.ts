@@ -31,6 +31,10 @@ class PatientsRepository implements IPatientsRepository {
     return await this.repository.findOne(id);
   }
 
+  async findByEmail(email: string): Promise<Patient> {
+    return await this.repository.findOne(email);
+  }
+
   async update(patient: IPatientDTO): Promise<void> {
     const errors = await validate(
       Object.setPrototypeOf(patient, new IPatientDTO())

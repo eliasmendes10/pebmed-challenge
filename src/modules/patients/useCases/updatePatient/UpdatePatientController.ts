@@ -7,6 +7,7 @@ import { UpdatePatientUseCase } from "./UpdatePatientUseCase";
 class UpdatePatientController {
   async handle(request: Request, response: Response): Promise<Response> {
     const { id } = request.params;
+
     const { name, phone_number, email, birth_date, gender, height, weight } =
       request.body;
 
@@ -24,8 +25,8 @@ class UpdatePatientController {
       });
 
       return response.status(204).send();
-    } catch (error) {
-      throw new AppError(error, 400);
+    } catch (e) {
+      return response.status(e.statusCode).json(e.message);
     }
   }
 }

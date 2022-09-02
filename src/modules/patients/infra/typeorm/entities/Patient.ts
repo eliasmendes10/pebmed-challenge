@@ -1,5 +1,6 @@
 import { Column, CreateDateColumn, Entity, PrimaryColumn } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
+import { Gender } from "@shared/utils/gender.enum";
 
 @Entity("patients")
 class Patient {
@@ -12,20 +13,20 @@ class Patient {
   @Column()
   phone_number: string;
 
-  @Column()
+  @Column({ type: "date" })
   email: string;
 
-  @Column()
-  birth_date: Date;
+  @Column({ type: "date" })
+  birth_date: string;
 
-  @Column()
+  @Column({ type: "enum", enum: Gender })
   gender: string;
 
   @Column()
-  height: string;
+  height: number;
 
   @Column()
-  weight: string;
+  weight: number;
 
   @CreateDateColumn()
   created_at: Date;
