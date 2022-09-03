@@ -32,7 +32,9 @@ class PatientsRepository implements IPatientsRepository {
   }
 
   async findByEmail(email: string): Promise<Patient> {
-    return await this.repository.findOne(email);
+    return await this.repository.findOne({
+      where: [{ email: email }],
+    });
   }
 
   async update(patient: IPatientDTO): Promise<void> {

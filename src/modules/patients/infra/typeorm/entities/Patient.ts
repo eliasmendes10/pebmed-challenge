@@ -13,7 +13,7 @@ class Patient {
   @Column()
   phone_number: string;
 
-  @Column({ type: "date" })
+  @Column()
   email: string;
 
   @Column({ type: "date" })
