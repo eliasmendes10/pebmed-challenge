@@ -34,7 +34,7 @@ describe("Create Schedule", () => {
     });
 
     const schedule = await createScheduleUseCase.execute({
-      time: "2022-09-21 00:24:10",
+      time: "2022-09-21 19:30:00",
       patient_id: patient.id,
     });
 
@@ -53,13 +53,13 @@ describe("Create Schedule", () => {
     });
 
     const schedule1 = await createScheduleUseCase.execute({
-      time: "2022-09-21 00:24:10",
+      time: "2022-09-21 19:30:00",
       patient_id: patient.id,
     });
 
     expect(async () => {
       await createScheduleUseCase.execute({
-        time: "2022-09-21 00:24:10",
+        time: "2022-09-21 19:30:00",
         patient_id: patient.id,
       });
     }).rejects.toBeInstanceOf(AppError);
@@ -69,7 +69,7 @@ describe("Create Schedule", () => {
     const id = "eb63b0ae-00fc-41ac-bc02-aff1ed141d6b";
     expect(async () => {
       await createScheduleUseCase.execute({
-        time: "2022-09-21 00:24:10",
+        time: "2022-09-21 19:30:00",
         patient_id: id,
       });
     }).rejects.toBeInstanceOf(AppError);

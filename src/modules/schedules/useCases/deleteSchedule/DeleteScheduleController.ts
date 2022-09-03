@@ -12,8 +12,8 @@ class DeleteScheduleController {
       const schedule = await deleteScheduleUseCase.execute(id);
 
       return response.status(200).json(schedule);
-    } catch (error) {
-      throw new AppError("Schedule doesn't exist!", 404);
+    } catch (e) {
+      return response.status(e.statusCode).json(e.message);
     }
   }
 }

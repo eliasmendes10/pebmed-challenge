@@ -12,8 +12,8 @@ class ListNoteController {
       const notes = await listNoteUseCase.execute(id);
 
       return response.status(200).json(notes);
-    } catch (error) {
-      throw new AppError("Notes doesn't exist!", 404);
+    } catch (e) {
+      return response.status(e.statusCode).json(e.message);
     }
   }
 }

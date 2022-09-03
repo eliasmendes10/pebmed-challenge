@@ -15,8 +15,8 @@ class CreateNoteController {
       });
 
       return response.status(201).json(result);
-    } catch (error) {
-      throw new AppError(error, 400);
+    } catch (e) {
+      return response.status(e.statusCode).json(e.message);
     }
   }
 }

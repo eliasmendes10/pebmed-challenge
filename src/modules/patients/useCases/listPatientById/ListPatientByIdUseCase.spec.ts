@@ -7,7 +7,7 @@ let createPatientUseCase: CreatePatientUseCase;
 let listPatientByIdUseCase: ListPatientByIdUseCase;
 let patientsRepositoryInMemory: PatientsRepositoryInMemory;
 
-describe("List Patient", () => {
+describe("List specific Patient", () => {
   beforeEach(() => {
     patientsRepositoryInMemory = new PatientsRepositoryInMemory();
     createPatientUseCase = new CreatePatientUseCase(patientsRepositoryInMemory);
@@ -16,7 +16,7 @@ describe("List Patient", () => {
     );
   });
 
-  it("Should be able to delete a doesn't exists patient", async () => {
+  it("Should be able to list a non-existent patient", async () => {
     const id = "eb63b0ae-00fc-41ac-bc02-aff1ed141d6b";
 
     expect(async () => {

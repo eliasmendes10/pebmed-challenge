@@ -6,7 +6,7 @@ let createPatientUseCase: CreatePatientUseCase;
 let getAllPatientsUseCase: GetAllPatientsUseCase;
 let patientsRepositoryInMemory: PatientsRepositoryInMemory;
 
-describe("List Patient", () => {
+describe("List all Patients", () => {
   beforeEach(() => {
     patientsRepositoryInMemory = new PatientsRepositoryInMemory();
     createPatientUseCase = new CreatePatientUseCase(patientsRepositoryInMemory);
@@ -15,7 +15,7 @@ describe("List Patient", () => {
     );
   });
 
-  it("Should be able to list all patient", async () => {
+  it("Should be able to list all patients", async () => {
     await createPatientUseCase.execute({
       name: "Elias Mendes",
       phone_number: "48996412660",

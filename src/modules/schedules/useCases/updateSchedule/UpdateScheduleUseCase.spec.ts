@@ -3,7 +3,6 @@ import { AppError } from "@shared/errors/AppError";
 import { CreatePatientUseCase } from "@modules/patients/useCases/createPatient/CreatePatientUseCase";
 import { PatientsRepositoryInMemory } from "@modules/patients/repositories/in-memory/PatientsRepositoryInMemory";
 import { CreateScheduleUseCase } from "../createSchedule/CreateScheduleUseCase";
-import { UpdatePatientUseCase } from "@modules/patients/useCases/updatePatient/UpdatePatientUseCase";
 import { UpdateScheduleUseCase } from "./UpdateScheduleUseCase";
 
 let createPatientUseCase: CreatePatientUseCase;
@@ -33,7 +32,7 @@ describe("Create Schedule", () => {
 
     expect(async () => {
       await updateScheduleUseCase.execute({
-        time: "2022-09-21 00:24:10",
+        time: "2022-09-21 19:30:00",
         patient_id: id,
       });
     }).rejects.toBeInstanceOf(AppError);
@@ -51,12 +50,12 @@ describe("Create Schedule", () => {
     });
 
     const schedule = await createScheduleUseCase.execute({
-      time: "2022-09-21 00:24:10",
+      time: "2022-09-21 19:30:00",
       patient_id: patient.id,
     });
 
     const changeSchedule = {
-      time: "2022-09-22 00:24:10",
+      time: "2022-09-22 19:30:00",
       patient_id: schedule.patient_id,
       id: schedule.id,
     };
@@ -77,7 +76,7 @@ describe("Create Schedule", () => {
     });
 
     const schedule = await createScheduleUseCase.execute({
-      time: "2022-09-21 00:24:10",
+      time: "2022-09-21 19:30:00",
       patient_id: patient.id,
     });
 
