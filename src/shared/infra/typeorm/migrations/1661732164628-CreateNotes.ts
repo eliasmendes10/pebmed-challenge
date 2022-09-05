@@ -19,8 +19,8 @@ export class CreateNotes1661732164628 implements MigrationInterface {
             referencedTableName: "patients",
             referencedColumnNames: ["id"],
             columnNames: ["patient_id"],
-            onDelete: "SET NULL",
-            onUpdate: "SET NULL",
+            onDelete: "RESTRICT",
+            onUpdate: "CASCADE",
           },
         ],
       })

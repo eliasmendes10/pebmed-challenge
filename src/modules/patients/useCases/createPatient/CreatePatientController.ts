@@ -19,6 +19,7 @@ class CreatePatientController {
 
       return response.status(201).json(patient);
     } catch (e) {
+      console.log(e);
       return response.status(e.statusCode).json(e.message);
     }
   }

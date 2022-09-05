@@ -22,7 +22,7 @@ describe("List all Patients", () => {
       email: "eliasmdes@gmail.com",
       birth_date: "1990-08-23",
       gender: "Masculino",
-      height: 1.8,
+      height: 180,
       weight: 85,
     });
 
@@ -32,7 +32,7 @@ describe("List all Patients", () => {
       email: "eliasmdes2@gmail.com",
       birth_date: "1990-08-23",
       gender: "Masculino",
-      height: 1.8,
+      height: 180,
       weight: 85,
     });
 
@@ -42,7 +42,7 @@ describe("List all Patients", () => {
       email: "eliasmdes3@gmail.com",
       birth_date: "1990-08-23",
       gender: "Masculino",
-      height: 1.8,
+      height: 180,
       weight: 85,
     });
 

@@ -39,13 +39,13 @@ class CreateScheduleUseCase {
     const scheduleByTime = await this.schedulesRepository.getByTime(time);
 
     if (scheduleByTime) {
-      throw new AppError({ error: "Appointment time already registered" }, 400);
+      throw new AppError({ error: "Appointment time already registered" }, 401);
     }
 
     const patient = await this.patientsRepository.findById(patient_id);
 
     if (!patient) {
-      throw new AppError({ error: "Patient doesn't exists" }, 400);
+      throw new AppError({ error: "Patient doesn't exists" }, 402);
     }
     const schedule = await this.schedulesRepository.create({
       time,

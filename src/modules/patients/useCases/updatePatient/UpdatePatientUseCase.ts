@@ -47,7 +47,7 @@ class UpdatePatientUseCase {
     const patient = await this.patientsRepository.findById(id);
 
     if (!patient) {
-      throw new AppError({ error: "Patient doesn't exists" }, 400);
+      throw new AppError({ error: "Patient doesn't exists" }, 401);
     }
 
     await this.patientsRepository.update({

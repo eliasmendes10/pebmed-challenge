@@ -29,7 +29,7 @@ describe("Update Patient", () => {
         email: "changemail@gmail.com",
         birth_date: "1990-08-23",
         gender: "Masculino",
-        height: 1.8,
+        height: 180,
         weight: 85,
         id,
       });
@@ -42,7 +42,7 @@ describe("Update Patient", () => {
       email: "eliasmdes@gmail.com",
       birth_date: "1990-08-23",
       gender: "Masculino",
-      height: 1.8,
+      height: 180,
       weight: 85,
     });
     const id = patient.id;
@@ -53,7 +53,7 @@ describe("Update Patient", () => {
       email: "changemail@gmail.com",
       birth_date: "1990-08-23",
       gender: "Masculino",
-      height: 1.8,
+      height: 180,
       weight: 85,
       id,
     };
@@ -71,7 +71,7 @@ describe("Update Patient", () => {
       email: "eliasmdes@gmail.com",
       birth_date: "1990-08-23",
       gender: "Masculino",
-      height: 1.8,
+      height: 180,
       weight: 85,
     });
     const id = patient.id;
@@ -83,7 +83,7 @@ describe("Update Patient", () => {
         email: "eliasmdes@gmail.com",
         birth_date: "1990-08-23",
         gender: "Masculino",
-        height: 1.8,
+        height: 180,
         weight: 85,
         id,
       });
@@ -96,7 +96,7 @@ describe("Update Patient", () => {
         email: "eliasmdes@gmail.com",
         birth_date: "1990-08-23",
         gender: "Masculino",
-        height: 1.8,
+        height: 180,
         weight: 85,
         id,
       });
@@ -109,7 +109,7 @@ describe("Update Patient", () => {
         email: "",
         birth_date: "1990-08-23",
         gender: "Masculino",
-        height: 1.8,
+        height: 180,
         weight: 85,
         id,
       });
@@ -122,7 +122,7 @@ describe("Update Patient", () => {
         email: "eliasmdes@gmail.com",
         birth_date: "",
         gender: "Masculino",
-        height: 1.8,
+        height: 180,
         weight: 85,
         id,
       });
@@ -135,7 +135,7 @@ describe("Update Patient", () => {
         email: "eliasmdes@gmail.com",
         birth_date: "1990-08-23",
         gender: "",
-        height: 1.8,
+        height: 180,
         weight: 85,
         id,
       });
@@ -161,7 +161,7 @@ describe("Update Patient", () => {
         email: "eliasmdes@gmail.com",
         birth_date: "1990-08-23",
         gender: "Masculino",
-        height: 1.8,
+        height: 180,
         weight: null,
         id,
       });

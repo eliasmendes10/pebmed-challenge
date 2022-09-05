@@ -33,7 +33,7 @@ class UpdateScheduleUseCase {
     const schedule = await this.schedulesRepository.findById(id);
 
     if (!schedule) {
-      throw new AppError({ error: "Schedule doesn't exists" }, 404);
+      throw new AppError({ error: "Schedule doesn't exists" }, 401);
     }
 
     await this.schedulesRepository.update({

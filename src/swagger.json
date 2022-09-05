@@ -9,6 +9,62 @@
     }
   },
   "paths": {
+    "/user": {
+      "post": {
+        "tags": ["User"],
+        "summary": "Create a User",
+        "description": "Create a new User",
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+
+    "/sessions": {
+      "post": {
+        "tags": ["Session"],
+        "summary": "Create a Session",
+        "description": "Create a new Session",
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/Session"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "items": {
+                    "$ref": "#/definitions/Session"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
     "/patient": {
       "post": {
         "tags": ["Patient"],
@@ -19,12 +75,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {},
-                "example": {
-                  "name": "patient name sample",
-                  "description": "patient description sample"
-                }
+                "$ref": "#/definitions/Patient"
               }
             }
           }
@@ -33,8 +84,342 @@
           "201": {
             "description": "Created"
           },
-          "500": {
+          "400": {
+            "description": "Validation errors"
+          },
+          "401": {
             "description": "Patient already exists"
+          }
+        }
+      }
+    },
+
+    "/patient/list": {
+      "get": {
+        "tags": ["Patient"],
+        "summary": "List all Patients",
+        "description": "List all Patients",
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Patient"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/Patient/{id}": {
+      "get": {
+        "tags": ["Patient"],
+        "summary": "List a specific patient",
+        "description": "List a specific patient",
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Patient id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/Patient"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Patient doesn't exists"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Patient"],
+        "summary": "Delete a patient",
+        "description": "Delete a specific patient",
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Patient id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deleted"
+          },
+          "400": {
+            "description": "Patient doesn't exists"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Patient"],
+        "summary": "Update a patient",
+        "description": "Update a specific patient",
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Patient id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/Patient"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Updated"
+          },
+          "400": {
+            "description": "Validation errors"
+          },
+          "401": {
+            "description": "Patient doesn't exists"
+          }
+        }
+      }
+    },
+    "/schedule": {
+      "post": {
+        "tags": ["Schedule"],
+        "summary": "Create a Schedule",
+        "description": "Create a new Schedule",
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/Schedule"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Appointment time already registered"
+          },
+          "402": {
+            "description": "Patient doesn't exists"
+          }
+        }
+      }
+    },
+
+    "/schedule/list": {
+      "get": {
+        "tags": ["Schedule"],
+        "summary": "List all Schedules",
+        "description": "List all Schedules",
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Schedule"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/schedule/{id}": {
+      "get": {
+        "tags": ["Schedule"],
+        "summary": "List a specific Schedule",
+        "description": "List a specific Schedule",
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Schedule id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/Schedule"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Schedule doesn't exists"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Schedule"],
+        "summary": "Delete a patient",
+        "description": "Delete a specific patient",
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Schedule id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deleted"
+          },
+          "400": {
+            "description": "Schedule doesn't exists"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Schedule"],
+        "summary": "Update a Schedule",
+        "description": "Update a specific Schedule",
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Schedule id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/Schedule"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Updated"
+          },
+          "400": {
+            "description": "Validation errors"
+          },
+          "401": {
+            "description": "Schedule doesn't exists"
+          }
+        }
+      }
+    },
+
+    "/note": {
+      "post": {
+        "tags": ["Note"],
+        "summary": "Create a Note",
+        "description": "Create a new Note",
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/Notes"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Patient doesn't exists"
+          }
+        }
+      }
+    },
+
+    "/note/list/{id}": {
+      "get": {
+        "tags": ["Note"],
+        "summary": "List notes for a specific patient",
+        "description": "List notes for a specific patient",
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Patient id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/Notes"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Patient doesn't exists"
           }
         }
       }
@@ -43,11 +428,130 @@
   "definitions": {
     "Patient": {
       "type": "object",
-      "properties": {}
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "phone_number": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "birth_date": {
+          "type": "date"
+        },
+        "gender": {
+          "type": "enum"
+        },
+        "height": {
+          "type": "number"
+        },
+        "weight": {
+          "type": "number"
+        },
+        "created_at": {
+          "type": "timestamp"
+        },
+        "updated_at": {
+          "type": "timestamp"
+        }
+      },
+      "example": {
+        "name": "Elias Mendes",
+        "phone_number": "48996412660",
+        "email": "eliasmdes3@gmail.com",
+        "birth_date": "1990-08-23",
+        "gender": "Masculino",
+        "height": 180,
+        "weight": 85,
+        "created_at": "2022-09-05T00:32:57.198Z",
+        "updated_at": "2022-09-05T00:32:57.198Z"
+      }
     },
     "Schedule": {
       "type": "object",
-      "properties": {}
+      "properties": {
+        "time": {
+          "type": "string"
+        },
+        "patient_id": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "timestamp"
+        },
+        "updated_at": {
+          "type": "timestamp"
+        }
+      },
+      "example": {
+        "time": "2022-09-05T00:32:57.198Z",
+        "patient_id": "eb63b0ae-00fc-41ac-bc02-aff1ed141d6b",
+        "created_at": "2022-09-05T00:32:57.198Z",
+        "updated_at": "2022-09-05T00:32:57.198Z"
+      }
+    },
+    "Notes": {
+      "type": "object",
+      "properties": {
+        "note": {
+          "type": "string"
+        },
+        "patient_id": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "timestamp"
+        },
+        "updated_at": {
+          "type": "timestamp"
+        }
+      },
+      "example": {
+        "note": "Simple text 2",
+        "patient_id": "eb63b0ae-00fc-41ac-bc02-aff1ed141d6b",
+        "created_at": "2022-09-05T00:32:57.198Z",
+        "updated_at": "2022-09-05T00:32:57.198Z"
+      }
+    },
+    "User": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "timestamp"
+        }
+      },
+      "example": {
+        "name": "Elias Mendes",
+        "password": "1234",
+        "email": "eliasmdes@gmail.com",
+        "created_at": "2022-09-05T00:32:57.198Z"
+      }
+    },
+    "Session": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "password": "1234",
+        "email": "eliasmdes@gmail.com"
+      }
     }
   },
   "components": {

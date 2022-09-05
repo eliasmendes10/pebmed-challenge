@@ -1,104 +1,66 @@
-Instalação / configuração do Postgresql
+# PEBMED-CHALLENGE-API
 
-yarn add typeorm
-yarn add reflect-metadata
-yarn add pg
+API Restfull criada para o desafio da PEBMED.
 
-quando instalar algo como o banco de dados é bom forçar a recriação do container
-docker-compose up --force-recreate
+- NodeJS
+- MySQL
+- Express
+- TypeORM
+- UUID
+- JWT
+- Bcrypt
+- Jest
+- ESLint
+- Swagger
 
-Esse comando verifica qual é o ip do nosso container
-docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' eliasMyStudy
-ou
-docker exec eliasMyStudy cat /etc/hosts
+# Setup
 
-TypeOrm
+1. Instalar [Docker](https://docs.docker.com/engine/install/)
+2. Instalar [Docker-Compose](https://docs.docker.com/compose/install/)
+3. Conferir [arquivo de variaveis de ambiente](.env)
+4. Rodar o comando `docker-compose up` para subir o ambiente
+5. Execute `docker-compose exec app bash` para acessar o container
+6. Rodar Migrations com o comando `npm run typeorm migrations:run`
+7. O projeto possuir [seed] para gerar o usuário execute `npm run seed:admin`.
 
-Create migration
-yarn typeorm migration:create -n CreateCategories
-Rodar migration
-yarn typeorm migration:run
-Reverter Migration
-yarn typeorm migration:revert
+## Testes
 
-Ferramenta para Injeção de Dependencia. (TSyringe)
-yarn add tsyringe
+<!-- Para rodar os testes certifique-se de possuir todas as dependências do projeto instaladas com o comando `npm install`
 
-#TESTES - jest
+Os testes das pastas `__tests__/repositories` e `__tests__/routes` estão comentados porque tive dificuldades para conseguir utilizar o MySQL em memória para possibilitar os testes de integração e unitários somente na camada de repositório, mas para conseguir rodar esses tipos de testes, segue o exemplo utilizando um outro *schema*.
 
-yarn add jest -D
-yarn add @types/jest -D
+1. Criar o novo *schema* chamado **pebmed_test**. Certifique-se que o *container* do MySQL está rodando.
+   ```
+   docker-compose exec mysqldb mysql -u root -p -e "create database pebmed_test"
+   ```
+2. Remover comentários dos arquivos da pasta `__tests__/repositories`:
+   1. `doctor.repository.spec.ts`
+   2. `patient.repository.spec.ts`
+   3. `schedule.repository.spec.ts`
+   4. `session.repository.spec.ts`
+3. Remover comentários dos arquivos da pasta `__tests__/routes`:
+   1. `auth.routes.tests.ts`
+   2. `patient.routes.tests.ts`
 
-#para criar jest.config.ts
-yarn jest --init
+Para rodar somente os testes **unitários** rode o comando `npm run tests:unit`
 
-add preset
-yarn add ts-jest -D
-no config jest adicionar/alterar a propriedade --> preset: "ts-jest"
-Depois é necessário configurar o mapeamento das classes que desejamos efetuar testes
+![Testes unitários](./images/testes_unitarios.png)
 
-Recomendado deixar as pastas dos testes dentro da estrutura "modules > useCase"
-Assim fica mais fácil de saber onde está cada teste e o que ele vai fazer
+Para rodar somente os testes de **integração** rode o comando `npm run tests:integration`
 
-bail: true --> default inicia com false
-indica para o jest se a gente quer ou não que o switch de teste pare ao encontrar um erro
+![Testes de integração](./images/testes_integracao.png)
 
-#yarn add tsconfig-paths -D
-Para configurar o ts config para permitir shortUrl como: @shared, @modules, @errors
+Para rodar todos os testes e obter o relatório de cobertura rode o comando `npm run tests:coverage`
 
-# Cadastro de Carro
+![Testes com cobertura 1](images/cobertura_testes_1.png)
+![Testes com cobertura 2](images/cobertura_testes_2.png) -->
 
-**RF** => Requisitos Funcionais
-Deve ser possível cadastrar um novo carro.
-Deve ser possível listar todas as categorias.
+## Documentação da API
 
-**RNF** => Requisitos Não Funcionais
+Para ver a documentação da api acesse com o projeto up -> [localhost:3000/docs](http://localhost:3000/docs)
 
-**RN** => Regras de Negócio
-Não deve ser possível cadastrar um carro com uma placa já existente.
-O carro deve ser cadastrado, por padrão, com disponibilidade.
-O usuário responsável pelo cadastro deve ser um usuário administrador.
+![Documentação da api](images/Swagger.png)
 
-# Listagem de carros
+# Modelagem do banco de dados
 
-**RF**
-Deve ser possível listar todos os carros disponíveis.
-Deve ser possível listar todos os carros disponíveis pelo nome da categoria.
-deve ser possível listar todos os carros disponíveis pelo nome da marca.
-deve ser possível listar todos os carros disponíveis pelo nome do carro.
-
-**RN**
-O usuário não precisa estar logado no sistema.
-
-# Cadastro de Especificação no carro
-
-**RF**
-Deve ser possível cadastrar uma especificação para um carro.
-
-**RN**
-Não deve ser possível cadastrar uma especificação para um carro não cadastrado.
-Não deve ser possível cadastrar uma especificação já existente para o mesmo carro.
-O usuário responsável pelo cadastro deve ser um usuário administrador.
-
-# Cadastro de imagens do carro
-
-**RF**
-Deve ser possível cadastrar a imagem do carro.
-Deve ser possível listar todos os carros.
-
-**RNF**
-Utilizar o multar para upload dos arquivos.
-
-**RN**
-O usuário deve poder cadastrar mais de uma imagem para o mesmo carro.
-O usuário responsável pelo cadastro deve ser um usuário administrador.
-
-# Alugel de carro
-
-**RF**
-Deve ser possível cadastrar um aluguel.
-
-**RN**
-O aluguel deve ter duração mínima de 24 horas.
-Não deve ser possível cadastrar um novo aluguel caso já exista um aberto para o mesmo usuário.
-Não deve ser possível cadastrar um novo aluguel caso já exista um aberto para o mesmo carro.
+![Modelagem](./images/Diagram.jpeg)

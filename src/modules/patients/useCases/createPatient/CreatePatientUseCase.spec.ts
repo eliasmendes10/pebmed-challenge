@@ -18,7 +18,7 @@ describe("Create Patient", () => {
       email: "eliasmdes@gmail.com",
       birth_date: "1990-08-23",
       gender: "Masculino",
-      height: 1.8,
+      height: 180,
       weight: 85,
     });
 
@@ -33,7 +33,7 @@ describe("Create Patient", () => {
         email: "eliasmdes@gmail.com",
         birth_date: "1990-08-23",
         gender: "Masculino",
-        height: 1.8,
+        height: 180,
         weight: 85,
       });
     }).rejects.toBeInstanceOf(AppError);
@@ -45,7 +45,7 @@ describe("Create Patient", () => {
         email: "eliasmdes@gmail.com",
         birth_date: "1990-08-23",
         gender: "Masculino",
-        height: 1.8,
+        height: 180,
         weight: 85,
       });
     }).rejects.toBeInstanceOf(AppError);
@@ -57,7 +57,7 @@ describe("Create Patient", () => {
         email: "",
         birth_date: "1990-08-23",
         gender: "Masculino",
-        height: 1.8,
+        height: 180,
         weight: 85,
       });
     }).rejects.toBeInstanceOf(AppError);
@@ -69,7 +69,7 @@ describe("Create Patient", () => {
         email: "eliasmdes@gmail.com",
         birth_date: "",
         gender: "Masculino",
-        height: 1.8,
+        height: 180,
         weight: 85,
       });
     }).rejects.toBeInstanceOf(AppError);
@@ -81,7 +81,7 @@ describe("Create Patient", () => {
         email: "eliasmdes@gmail.com",
         birth_date: "1990-08-23",
         gender: "",
-        height: 1.8,
+        height: 180,
         weight: 85,
       });
     }).rejects.toBeInstanceOf(AppError);
@@ -105,7 +105,7 @@ describe("Create Patient", () => {
         email: "eliasmdes@gmail.com",
         birth_date: "1990-08-23",
         gender: "Masculino",
-        height: 1.8,
+        height: 180,
         weight: null,
       });
     }).rejects.toBeInstanceOf(AppError);
@@ -119,7 +119,7 @@ describe("Create Patient", () => {
         email: "eliasmdes@gmail.com",
         birth_date: "1990-08-23",
         gender: "Masculino",
-        height: 1.8,
+        height: 180,
         weight: 85,
       });
 
@@ -129,7 +129,7 @@ describe("Create Patient", () => {
         email: "eliasmdes@gmail.com",
         birth_date: "1990-08-23",
         gender: "Masculino",
-        height: 1.8,
+        height: 180,
         weight: 85,
       });
     }).rejects.toBeInstanceOf(AppError);
@@ -143,7 +143,7 @@ describe("Create Patient", () => {
         email: "eliasmdes@gmail.com",
         birth_date: "1990-08-23",
         gender: "M",
-        height: 1.8,
+        height: 180,
         weight: 85,
       });
     }).rejects.toBeInstanceOf(AppError);
@@ -156,7 +156,7 @@ describe("Create Patient", () => {
       email: "eliasmdes@gmail.com",
       birth_date: "1990-08-23",
       gender: "Masculino",
-      height: 1.8,
+      height: 180,
       weight: 85,
     });
 
@@ -168,7 +168,7 @@ describe("Create Patient", () => {
       email: "eliasmdes2@gmail.com",
       birth_date: "1990-08-23",
       gender: "Feminino",
-      height: 1.8,
+      height: 180,
       weight: 85,
     });
 
@@ -180,7 +180,7 @@ describe("Create Patient", () => {
       email: "eliasmdes3@gmail.com",
       birth_date: "1990-08-23",
       gender: "Prefiro não informar",
-      height: 1.8,
+      height: 180,
       weight: 85,
     });
 

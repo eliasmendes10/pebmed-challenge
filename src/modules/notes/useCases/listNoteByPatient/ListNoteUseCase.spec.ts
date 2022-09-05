@@ -40,7 +40,7 @@ describe("Create Note", () => {
       email: "eliasmdes@gmail.com",
       birth_date: "1990-08-23",
       gender: "Masculino",
-      height: 1.8,
+      height: 180,
       weight: 85,
     });
 

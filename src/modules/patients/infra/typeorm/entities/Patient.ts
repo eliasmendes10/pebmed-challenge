@@ -1,6 +1,6 @@
 import { Column, CreateDateColumn, Entity, PrimaryColumn } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
-import { Gender } from "@shared/utils/gender.enum";
+import { Gender } from "../../../../../shared/utils/gender.enum";
 
 @Entity("patients")
 class Patient {
